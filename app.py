@@ -1,5 +1,5 @@
 from flask import Flask, redirect, url_for, request, render_template
-
+from config import *
 
 app = Flask(__name__)
 
@@ -7,10 +7,23 @@ app = Flask(__name__)
 def home():  # put application's code here
     return render_template('home.html')
 
+@app.route('/login')
+def loginsystem():
+    return render_template("login.html")
+
+#figure this oput
+@app.route('/handle_data', methods=['POST'])
+def handle_data():
+    projectpath = request.form['projectFilepath']
+    # your code
+    # return a response
+
+
+"""
 @app.route('/user/<name>')
 def userpage(name):  # put application's code here
-    return render_template('userpage.html', title=str(name))
-
+    return render_template('profile.html', title=str(name))
+"""
 
 #Catch all extra routes
 @app.route('/', defaults={'u_path': ''})
