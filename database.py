@@ -1,24 +1,19 @@
-import mysql.connector
 
-"""
-mydb = mysql.connector.connect(
-    host = "67.80.182.230",
-    user = "john4064",
-    password = "Panda1234"
+from config import *
+import pyodbc
 
-)
-"""
-import random
 
-def init(n : int)-> list[int]:
-    ansArr=[]
 
-    return ansArr
+if __name__ == '__main__':
+    try:
+        cnxn = pyodbc.connect('DRIVER=' + driver +
+                              ';SERVER=' + DATABASE_URL +
+                              ';DATABASE=' + database +
+                              ';UID=' + username +
+                              ';PWD=' + dbpassword)
 
-if __name__ == "__main__":
-    generators = init(5)
-
-    if generators is not None:
-        for rnd in generators:
-            print(rnd.randint(0, 1000))
+        cursor = cnxn.cursor()
+        print('Connection established')
+    except:
+        print('Cannot connect to SQL server')
 
